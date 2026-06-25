@@ -1,0 +1,240 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+.app{
+    width:95%;
+    max-width:1500px;
+    margin:auto;
+    padding:30px;
+}
+
+header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+header h1{
+    font-size:42px;
+    color:#38bdf8;
+}
+
+header p{
+    color:#cbd5e1;
+    margin-top:10px;
+}
+
+main{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:25px;
+}
+
+.content{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+/* ---------- FORM ---------- */
+
+.generate-form{
+    display:grid;
+    gap:15px;
+    background:#1e293b;
+    padding:25px;
+    border-radius:15px;
+}
+
+.generate-form input,
+.generate-form select{
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    outline:none;
+
+}
+
+.generate-form button{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+.generate-form button:hover{
+
+    background:#1d4ed8;
+
+}
+
+/* ---------- OUTPUT ---------- */
+
+.output-card{
+
+    background:#1e293b;
+
+    padding:25px;
+
+    border-radius:15px;
+
+}
+
+.section-card{
+
+    background:#334155;
+
+    margin-bottom:20px;
+
+    padding:18px;
+
+    border-radius:12px;
+
+}
+
+.section-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:12px;
+
+}
+
+.section-header button{
+
+    border:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.section-card pre{
+
+    white-space:pre-wrap;
+
+}
+
+.section-card p{
+
+    white-space:pre-wrap;
+
+    line-height:1.6;
+
+}
+
+/* ---------- TAGS ---------- */
+
+.tags{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+.tag{
+
+    background:#2563eb;
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+}
+
+/* ---------- HISTORY ---------- */
+
+.history-sidebar{
+
+    background:#1e293b;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    height:fit-content;
+
+}
+
+.history-sidebar h2{
+
+    margin-bottom:20px;
+
+}
+
+.history-card{
+
+    background:#334155;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:15px;
+
+    cursor:pointer;
+
+}
+
+.history-card:hover{
+
+    background:#475569;
+
+}
+
+.history-card h4{
+
+    margin-bottom:8px;
+
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:900px){
+
+main{
+
+grid-template-columns:1fr;
+
+}
+
+}
