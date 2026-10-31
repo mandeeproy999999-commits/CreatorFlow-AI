@@ -1,140 +1,161 @@
-# 🚀 CreatorFlow AI
+<div align="center">
 
-An AI-powered YouTube Content Studio that generates complete YouTube content including SEO titles, video scripts, descriptions, thumbnail prompts, tags, and alternative video ideas using Google Gemini API.
+# CreatorFlow AI
 
----
+**A content studio for YouTube creators.**
+Enter a topic and get a script, title, description, thumbnail prompt, tags and spin-off ideas in one pass.
 
-## ✨ Features
+[![Live Demo](https://img.shields.io/badge/live%20demo-vercel-000000?style=flat-square&logo=vercel)](https://creator-flow-ai-youtube-tool.vercel.app)
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+![Gemini](https://img.shields.io/badge/Google%20Gemini-4285F4?style=flat-square&logo=googlegemini&logoColor=white)
 
-* 🤖 AI-powered content generation using Google Gemini API
-* 📝 Generates 2–3 minute YouTube video scripts
-* 🎯 SEO-optimized video titles
-* 📄 YouTube video descriptions
-* 🖼️ AI thumbnail prompts
-* 🏷️ Relevant tags and SEO keywords
-* 💡 Alternative content ideas
-* 📚 Stores generation history in MongoDB Atlas
-* 📋 One-click copy functionality
-* 📱 Responsive modern user interface
+[Live Demo](https://creator-flow-ai-youtube-tool.vercel.app) · [Report a Bug](https://github.com/mandeeproy999999-commits/CreatorFlow-AI/issues) · [Request a Feature](https://github.com/mandeeproy999999-commits/CreatorFlow-AI/issues)
+
+</div>
 
 ---
 
-## 🛠️ Tech Stack
+## Overview
 
-### Frontend
+Planning a video usually means juggling five different tabs: one for the script, one for title research, one for tags, one for thumbnail ideas, and a notes app for everything else. CreatorFlow AI collapses that into a single form.
 
-* React
-* JavaScript
-* Axios
-* CSS3
+You describe the video (topic, audience, tone, category) and the app uses Google Gemini to produce a complete, publish-ready content package. Every generation is saved, so you can come back to earlier ideas later.
 
-### Backend
+## What You Get
 
-* Node.js
-* Express.js
+Each generation returns:
 
-### Database
+| Output | Details |
+| --- | --- |
+| **Video script** | A 2 to 3 minute script, written for the tone and audience you pick |
+| **SEO title** | A search-friendly title built around your topic |
+| **Description** | A ready-to-paste YouTube description |
+| **Thumbnail prompt** | A text prompt you can feed to any image generator |
+| **Tags and keywords** | Relevant tags and SEO keywords for the video |
+| **Alternative ideas** | Related video concepts for your next upload |
 
-* MongoDB Atlas
-* Mongoose
+Along with that:
 
-### AI
+- Generation history stored in MongoDB Atlas
+- One-click copy on every output block
+- Responsive layout that works on desktop and mobile
 
-* Google Gemini API
+## How It Works
 
-### Deployment
+```mermaid
+flowchart LR
+    A[React client] -->|POST /api/generate| B[Express server]
+    B -->|prompt| C[Gemini API]
+    C -->|generated content| B
+    B -->|save| D[(MongoDB Atlas)]
+    B -->|response| A
+    A -->|GET /api/history| B
+    B -->|query| D
+```
 
-* Vercel
+1. The client sends the topic, audience, tone and category to the Express API.
+2. The server builds a structured prompt and calls the Gemini API.
+3. The result is saved to MongoDB and returned to the client.
+4. The history view reads past generations back from the database.
 
----
+## Tech Stack
 
-## 📂 Project Structure
+| Layer | Technology |
+| --- | --- |
+| Frontend | React, JavaScript, Axios, CSS3 |
+| Backend | Node.js, Express.js |
+| Database | MongoDB Atlas, Mongoose |
+| AI | Google Gemini API |
+| Deployment | Vercel |
+
+## Project Structure
 
 ```
-CreatorFlow-AI
-│
-├── client
-│   ├── src
-│   │   ├── components
-│   │   ├── services
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── public
-│   └── package.json
-│
-├── server
-│   ├── config
-│   ├── controllers
-│   ├── models
-│   ├── routes
-│   ├── services
-│   ├── server.js
-│   └── package.json
-│
+CreatorFlow-AI/
+├── client/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       ├── services/
+│       ├── App.jsx
+│       └── main.jsx
+├── server/
+│   ├── config/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   └── server.js
 └── README.md
 ```
 
----
+## Getting Started
 
-## ⚙️ Installation
+### Prerequisites
 
-### Clone Repository
+- Node.js 18 or later
+- A MongoDB Atlas cluster and connection string
+- A Google Gemini API key from [Google AI Studio](https://aistudio.google.com/)
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/mandeeproy999999-commits/CreatorFlow-AI.git
+cd CreatorFlow-AI
 ```
 
-### Backend Setup
+### 2. Set up the backend
 
 ```bash
-cd CreatorFlow-AI/server
-
+cd server
 npm install
 ```
 
-Create a `.env` file:
+Create a `.env` file inside `server/`:
 
 ```env
 PORT=5000
-MONGO_URI=YOUR_MONGODB_URI
-GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+MONGO_URI=your_mongodb_connection_string
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
-Run the backend:
+Start the server:
 
 ```bash
 npm run dev
 ```
 
----
+### 3. Set up the frontend
 
-### Frontend Setup
+In a second terminal:
 
 ```bash
-cd ../client
-
+cd client
 npm install
-
 npm run dev
 ```
 
----
+The app will be available at the local URL printed by Vite, and the API at `http://localhost:5000`.
 
-## 🌐 Live Demo
+### Environment Variables
 
-**https://creator-flow-ai-youtube-tool.vercel.app**
+| Variable | Description |
+| --- | --- |
+| `PORT` | Port the Express server listens on |
+| `MONGO_URI` | MongoDB Atlas connection string |
+| `GEMINI_API_KEY` | API key for Google Gemini |
 
----
+Never commit your `.env` file. Make sure it is listed in `.gitignore`.
 
-## 📌 API Endpoints
+## API Reference
 
-### Generate AI Content
+### `POST /api/generate`
 
-```
-POST /api/generate
-```
+Generates a full content package for a video topic.
 
-Example Request
+**Request body**
 
 ```json
 {
@@ -145,31 +166,39 @@ Example Request
 }
 ```
 
----
+| Field | Type | Description |
+| --- | --- | --- |
+| `topic` | string | What the video is about |
+| `audience` | string | Who the video is for |
+| `tone` | string | Style of the script, such as Educational |
+| `category` | string | Content category, such as History |
 
-### Fetch Generation History
+### `GET /api/history`
 
-```
-GET /api/history
-```
+Returns previously generated content stored in the database.
 
----
+## Roadmap
 
-## 🚀 Future Improvements
+- [ ] User authentication
+- [ ] Export scripts as PDF
+- [ ] Download generated content
+- [ ] Favorites and saved projects
+- [ ] Search and filter for history
+- [ ] Multi-language script generation
+- [ ] AI image generation for thumbnails
+- [ ] Reusable content templates
 
-* User Authentication
-* Export Script as PDF
-* Download Generated Content
-* Favorite Saved Projects
-* Search & Filter History
-* Multi-language Script Generation
-* AI Image Generation for Thumbnails
-* Content Templates
-* Voice Script Generation
-* Team Collaboration
 
----
+## Contributing
 
-## ⭐ Support
+Contributions are welcome. If you have an idea or found a bug:
 
-If you found this project helpful, consider giving it a ⭐ on GitHub.
+1. Fork the repository
+2. Create a branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m "Add your feature"`
+4. Push the branch: `git push origin feature/your-feature`
+5. Open a pull request
+
+## Support
+
+If CreatorFlow AI is useful to you, a star on the repository helps others find it.
